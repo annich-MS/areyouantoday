@@ -13,8 +13,7 @@ interface IAppProps {
 }
 
 const contentStyle = {
-  margin: '10px',
-  width: '280px',
+  margin: '10px'
 };
 const cardStyle = {
     'marginTop': '10px',

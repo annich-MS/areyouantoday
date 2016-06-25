@@ -13,11 +13,11 @@ export interface IGetAllPhotosAction {
   photos?: string[];
 }
 
-export function GetPhotosFromServer(smId: string) {
+export function GetPhotosFromServer() {
   return dispatch => {
     fetch(
       'http://localhost:3000/api/getMemoes/' +
-      '?owner=' + smId)
+      '?owner=')
       .then(response => response.json())
       .then(json => dispatch(updatePhotos(json)));
   };

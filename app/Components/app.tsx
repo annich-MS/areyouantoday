@@ -3,8 +3,9 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { GetPhotosFromServer } from '../actions';
-import AnState from '../Store/AnState';
-import {Card, CardActions, CardText, CardTitle} from 'material-ui';
+import {AnState} from '../Store/AnState';
+import {ActionGrade} from 'material-ui/lib/svg-icons';
+import {Card, CardActions, CardText, CardTitle, CardMedia, RaisedButton, IconButton, Styles} from 'material-ui';
 
 interface IAppProps {
   dispatch?: (func: any) => void;
@@ -27,7 +28,7 @@ const deleteStyle = {
 
 function select(state: AnState): IAppProps {
   return {
-    allPhotos: state.allPhotosMemoes,
+    allPhotos: state.allPhotos,
   };
 }
 
@@ -50,14 +51,19 @@ export class App extends React.Component<IAppProps, {}> {
     var { dispatch, allPhotos }: any = this.props;
 
     return (
-      <div style={contentStyle}><Card style={cardStyle}>
-        <CardTitle subtitle='One wise An said'/>
-        <CardText>گر ان شوی ز خانه غاری سازم</CardText>
-        <CardActions>
-          <RaisedButton label='گود ان' style={deleteStyle} primary={true} icon={<ActionDelete color={Styles.Colors.fullWhite}/>}
-            onMouseUp={() => {}            }/>
-        </CardActions>
-      </Card>
+      <div style={contentStyle}>
+        <Card style={cardStyle}>
+          <CardTitle subtitle='One wise An said'/>
+          <CardText>گر ان شوی ز خانه غاری سازم</CardText>
+          <CardMedia overlay={<CardTitle title='یک ان پیر' subtitle='آن ان امروز ان است' />}>
+            <img src='https://scontent-sea1-1.xx.fbcdn.net/v/t1.0-9/10501792_10153349365714299_8175611118427912525_n.jpg?oh=a18803b150e22da8f738ad3509f35302&oe=580A78F8' />
+          </CardMedia>
+          <CardActions>
+              <IconButton tooltip='گود ان' touch={true} tooltipPosition='top-right'>
+                <ActionGrade />
+              </IconButton>
+          </CardActions>
+        </Card>
       </div>
     );
   }

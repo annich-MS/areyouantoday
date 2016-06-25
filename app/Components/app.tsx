@@ -54,7 +54,7 @@ export class App extends React.Component<IAppProps, {}> {
       <div style={contentStyle}>
         <Card style={cardStyle}>
           <CardTitle subtitle='One wise An said'/>
-          <CardText>گر ان شوی ز خانه غاری سازم</CardText>
+          <CardText>گر ان شود ز خانه غاری سازد</CardText>
           <CardMedia overlay={<CardTitle title='یک ان پیر' subtitle='آن ان امروز ان است' />}>
             <img src='https://scontent-sea1-1.xx.fbcdn.net/v/t1.0-9/10501792_10153349365714299_8175611118427912525_n.jpg?oh=a18803b150e22da8f738ad3509f35302&oe=580A78F8' />
           </CardMedia>

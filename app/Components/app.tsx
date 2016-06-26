@@ -36,13 +36,13 @@ export class App extends React.Component<IAppProps, {}> {
   private smDisplayName: string;
   public componentDidMount() {
     const {dispatch, allPhotos} = this.props;
+    if (allPhotos == null || allPhotos[0] === undefined) {
+      dispatch(GetPhotosFromServer());
+    }
   }
 
   public shouldComponentUpdate(nextProps: IAppProps, nextState: any) {
     const {dispatch, allPhotos} = nextProps;
-    if (allPhotos == null || allPhotos[0] === undefined) {
-      dispatch(GetPhotosFromServer());
-    }
     return true;
   }
 
@@ -51,11 +51,16 @@ export class App extends React.Component<IAppProps, {}> {
 
     return (
       <div style={contentStyle}>
-      <AppBar title='One wise An said'/>
+      <AppBar title='One wise An said'
+              iconElementRight={
+                <IconButton onClick={() => window.location.href = 'https://github.com/nimatra/areyouantoday'}>
+                <img src='/public/github.png' />
+                </IconButton>}
+                           />
         <Card style={cardStyle}>
           <CardTitle>گر ان شود ز خانه غاری سازد</CardTitle>
           <CardMedia overlay={<CardTitle title='یک ان پیر' subtitle='آن ان امروز ان است' />}>
-            <img src='https://scontent-sea1-1.xx.fbcdn.net/v/t1.0-9/10501792_10153349365714299_8175611118427912525_n.jpg?oh=a18803b150e22da8f738ad3509f35302&oe=580A78F8' />
+            <img src={allPhotos[0]} />
           </CardMedia>
           <CardActions>
               <IconButton tooltip='گود ان' touch={true} tooltipPosition='top-right'>
@@ -63,7 +68,7 @@ export class App extends React.Component<IAppProps, {}> {
               </IconButton>
           </CardActions>
         </Card>
-      </div>
+      </div >
     );
   }
 }

@@ -12,15 +12,9 @@ function photosReducer(state: string[] = initialState.allPhotos, action: IGetAll
   switch (action.type) {
     case ACTION.Photos_ReceivedFromServer:
       return Object.assign(
-        <string[]>{},
+        <string[]>[],
         state,
-        {
-          allPhotos:
-          [
-            action.photos,
-            ...state,
-          ],
-        }
+        action.photos
       );
     default:
       return state;

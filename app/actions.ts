@@ -15,11 +15,8 @@ export interface IGetAllPhotosAction {
 
 export function GetPhotosFromServer() {
   return dispatch => {
-    fetch(
-      'http://localhost:3000/api/getMemoes/' +
-      '?owner=')
-      .then(response => response.json())
-      .then(json => dispatch(updatePhotos(json)));
+      dispatch(updatePhotos(['https://scontent-sea1-1.xx.fbcdn.net/v/t1.0-9/10501792_10153349365714299_8175611118427912525_n.jpg?oh=a18803b150e22da8f738ad3509f35302&oe=580A78F8']));
+    //get images from server
   };
 }
 

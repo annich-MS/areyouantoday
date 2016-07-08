@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { Provider } from 'react-redux';
 import { Auth, AuthState } from '../auth';
-//import {Authenticate} from '../Authenticate/authenticate';
+import {Authenticate} from '../Authenticate/authenticate';
 import { ButtonField } from '../components/fields/buttonField';
 import { CheckboxField } from '../components/fields/checkboxField';
 import { HtmlField } from '../components/fields/htmlField';
@@ -202,10 +202,8 @@ export class Dogfood extends React.Component<{}, IDogfoodState> {
     switch (state) {
       case AuthState.None: // we have to wait for Office to initialize, so show a waiting state
         return (<div>Loading</div>);
-        /*
       case AuthState.Request: // office has initialized, but we don't have auth for this user, pass them to the auth flow
         return (<Authenticate user={user} pollInterval={2000} refresh={this.updateAuth.bind(this) } />);
-        */
       case AuthState.Authorized: // we have auth for this user, go ahead and show something cool
         return (<div>
           <h1>Create a bug</h1>

@@ -6,7 +6,7 @@ import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Dogfood } from './Dogfood/dogfood';
 //import { VSTS } from './VSTS/VSTS';
-//import { Done } from './Authenticate/done';
+import { Done } from './Authenticate/done';
 
 
 declare const require: (name: String) => any;
@@ -54,9 +54,9 @@ class Main extends React.Component<{}, {}> {
       /*
       case 'vsts':
         return(<VSTS />);
+        */
       case 'done':
         return(<Done />);
-        */
       default:
         return(<div>Route: '{route}' is not a valid route!</div>);
     }

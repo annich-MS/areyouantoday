@@ -4,7 +4,7 @@ import * as ReactDOM from 'react-dom';
 // import { Store, createStore } from 'redux';
 // import { vsoAddin } from './reducers';
 import { Provider } from 'react-redux';
-//import { Dogfood } from './Dogfood/dogfood';
+import { Dogfood } from './Dogfood/dogfood';
 //import { VSTS } from './VSTS/VSTS';
 //import { Done } from './Authenticate/done';
 
@@ -49,9 +49,9 @@ class Main extends React.Component<{}, {}> {
   public render(): React.ReactElement<Provider> {
     const route: string = this.getRoute();
     switch (route) {
-      /*
       case 'dogfood':
         return(<Dogfood />);
+      /*
       case 'vsts':
         return(<VSTS />);
       case 'done':

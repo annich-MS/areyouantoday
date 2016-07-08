@@ -8,7 +8,7 @@ import { CheckboxField } from '../components/fields/checkboxField';
 import { HtmlField } from '../components/fields/htmlField';
 import { SelectField } from '../components/fields/selectField';
 import { StringField } from '../components/fields/stringField';
-//import { Rest, Account, Project, Team } from '../RestHelpers/rest';
+import { Rest, Account, Project, Team } from '../RestHelpers/rest';
 
 interface IHandleEmailCallback { (id: string): void; }
 
@@ -67,7 +67,6 @@ export class Dogfood extends React.Component<{}, IDogfoodState> {
   }
 
   public populateAccounts(): void {
-    /*
     Rest.getAccounts(this.state.user, (accounts: Account[]) => {
       let accountNames: string[] = [];
       accounts.forEach(account => {
@@ -75,11 +74,9 @@ export class Dogfood extends React.Component<{}, IDogfoodState> {
       });
       this.setState({ accounts: accountNames });
     });
-    */
   }
 
   public populateProjects(account: string): void {
-    /*
     Rest.getProjects(this.state.user, account, (projects: Project[]) => {
       let projectNames: string[] = [];
       projects.forEach(project => {
@@ -87,11 +84,9 @@ export class Dogfood extends React.Component<{}, IDogfoodState> {
       });
       this.setState({ projects: projectNames });
     });
-    */
   }
 
   public populateTeams(project: string, account: string): void {
-    /*
     Rest.getTeams(this.state.user, project, account, (teams: Team[]) => {
       let teamNames: string[] = [];
       teams.forEach(team => {
@@ -99,7 +94,6 @@ export class Dogfood extends React.Component<{}, IDogfoodState> {
       });
       this.setState({ teams: teamNames });
     });
-    */
   }
 
   public notificationMessage(type: any, message: string): void {
@@ -169,12 +163,10 @@ export class Dogfood extends React.Component<{}, IDogfoodState> {
       this.handleEmailAttachment((id: string) => {
 
         options.id = id;
-        /*
         Rest.createBug(state.user, options, state.title, state.body, (output) => {
           let parsed: any = JSON.parse(output);
           this.notifier.replaceAsync(this.messageKey, this.notificationMessage(types.ProgressIndicator, 'Created bug #' + parsed.id));
         });
-        */
       });
     } else {
       this.notifier.replaceAsync(this.messageKey, this.notificationMessage(types.ErrorMessage, 'Bug must have a team, title, and body'));

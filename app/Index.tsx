@@ -5,7 +5,7 @@ import * as ReactDOM from 'react-dom';
 // import { vsoAddin } from './reducers';
 import { Provider } from 'react-redux';
 import { Dogfood } from './Dogfood/dogfood';
-//import { VSTS } from './VSTS/VSTS';
+import { VSTS } from './VSTS/VSTS';
 import { Done } from './Authenticate/done';
 
 
@@ -51,10 +51,8 @@ class Main extends React.Component<{}, {}> {
     switch (route) {
       case 'dogfood':
         return(<Dogfood />);
-      /*
       case 'vsts':
         return(<VSTS />);
-        */
       case 'done':
         return(<Done />);
       default:

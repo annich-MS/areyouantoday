@@ -1,7 +1,7 @@
 /// <reference path='../../office.d.ts' />
 import * as React from 'react';
 import { Provider } from 'react-redux';
-//import { Auth, AuthState } from '../auth';
+import { Auth, AuthState } from '../auth';
 //import {Authenticate} from '../Authenticate/authenticate';
 import { ButtonField } from '../components/fields/buttonField';
 import { CheckboxField } from '../components/fields/checkboxField';
@@ -13,7 +13,7 @@ import { StringField } from '../components/fields/stringField';
 interface IHandleEmailCallback { (id: string): void; }
 
 interface IDogfoodState {
-  //authState?: AuthState;
+  authState?: AuthState;
   user?: string;
   projects?: string[];
   accounts?: string[];
@@ -36,7 +36,7 @@ export class Dogfood extends React.Component<{}, IDogfoodState> {
     this.state = {
       accounts: [],
       attachEmail: false,
-      //authState: AuthState.None,
+      authState: AuthState.None,
       projects: [],
       teams: [],
       user: '' };
@@ -56,7 +56,6 @@ export class Dogfood extends React.Component<{}, IDogfoodState> {
     }    else {
       user = Office.context.mailbox.userProfile.emailAddress;
     }
-    /*
     Auth.getAuthState(user, (state: AuthState) => {
       this.setState({
         authState: state,
@@ -65,7 +64,6 @@ export class Dogfood extends React.Component<{}, IDogfoodState> {
         this.populateAccounts();
       }
     });
-    */
   }
 
   public populateAccounts(): void {
@@ -193,7 +191,7 @@ export class Dogfood extends React.Component<{}, IDogfoodState> {
   }
 
   public render(): React.ReactElement<Provider> {
-    //const state: AuthState = this.state.authState;
+    const state: AuthState = this.state.authState;
     const user: string = this.state.user;
     const accounts: string[] = this.state.accounts;
     const projects: string[] = this.state.projects;
@@ -201,12 +199,13 @@ export class Dogfood extends React.Component<{}, IDogfoodState> {
     const title: string = this.state.title;
     const body: string = this.state.body;
 
-        /*
     switch (state) {
       case AuthState.None: // we have to wait for Office to initialize, so show a waiting state
         return (<div>Loading</div>);
+        /*
       case AuthState.Request: // office has initialized, but we don't have auth for this user, pass them to the auth flow
         return (<Authenticate user={user} pollInterval={2000} refresh={this.updateAuth.bind(this) } />);
+        */
       case AuthState.Authorized: // we have auth for this user, go ahead and show something cool
         return (<div>
           <h1>Create a bug</h1>
@@ -222,8 +221,7 @@ export class Dogfood extends React.Component<{}, IDogfoodState> {
 
         </div>);
       default:
-        */
         return(<div>This should never happen</div>);
-//    }
+    }
   }
 }

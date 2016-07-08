@@ -4,6 +4,7 @@ var webpack = require('webpack');
 var config = require('./config/webpack.prod');
 var authenticate = require('./routes/authenticate');
 var bodyParser = require('body-parser');
+var DEBUG = require('debug');
 
 var app = express();
 var compiler = webpack(config);
@@ -25,16 +26,31 @@ app.use(require('webpack-hot-middleware')(compiler));
 
 app.use('/public', express.static(__dirname + '/public'));
 app.use('/static', express.static(__dirname + '/static'));
+app.use('/authenticate', authenticate);
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.listen(port, 'localhost', err => {
-  if (err) {
-    console.log(err);
-    return;
-  }
+if(DEBUG == true){
+  var fs = require('fs');
+  
+  const options = {
+    key: fs.readFileSync('secrets/key.pem'),
+    cert: fs.readFileSync('secrets/cert.pem')
+  };
 
-  console.log(`Listening at http://localhost:${port}`);
-});
+  https.createServer(options, app).listen(port, function() {
+    console.log('Listening at https://localhost:' + port);
+  });
+}
+else{
+  console.log("WARNING: you are not running in debug mode. nothing will work!");
+  app.listen(port, "localhost", function(err) {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    console.log('Listening at http://localhost:' + port);
+  });
+}

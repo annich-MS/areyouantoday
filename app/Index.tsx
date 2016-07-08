@@ -1,18 +1,15 @@
 /// <reference path="../typings/tsd.d.ts" />
-
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { Store, createStore, applyMiddleware } from 'redux';
+// import { Store, createStore } from 'redux';
+// import { vsoAddin } from './reducers';
 import { Provider } from 'react-redux';
-import {Card, CardActions, CardHeader, CardText, CardTitle, AppBar} from 'material-ui';
-import {Route, Router, Link, browserHistory} from 'react-router';
+//import { Dogfood } from './Dogfood/dogfood';
+//import { VSTS } from './VSTS/VSTS';
+//import { Done } from './Authenticate/done';
 
-import { App } from './components/app';
-import { anReducer } from './reducers';
-import Routes from './Routes';
-import thunkMiddleware from 'redux-thunk';
 
-declare const requires: (name: String) => any;
+declare const require: (name: String) => any;
 
 interface IHotModule {
   hot?: { accept: (path: string, callback: () => void) => void };
@@ -20,14 +17,13 @@ interface IHotModule {
 
 declare const module: IHotModule;
 
+/*
 function configureStore(): Store {
-  const store: Store = createStore(anReducer, applyMiddleware(
-    thunkMiddleware
-  ));
+  const store: Store = createStore(vsoAddin);
 
   if (module.hot) {
     module.hot.accept('./reducers', () => {
-      const nextRootReducer: any = requires('./reducers').anReducer;
+      const nextRootReducer: any = require('./reducers').vsoAddin;
       store.replaceReducer(nextRootReducer);
     });
   }
@@ -35,14 +31,35 @@ function configureStore(): Store {
   return store;
 }
 
-const store: Store = configureStore();
-
+ const store: Store = configureStore();
+ */
 
 class Main extends React.Component<{}, {}> {
+
+  public getRoute(): string {
+    let url: string = document.URL;
+    let strings: string[] = url.split('/');
+    let output: string = strings[3];
+    if (output.includes('?')) {
+      output = output.slice(0, strings[3].indexOf('?'));
+    }
+    return output;
+  }
+
   public render(): React.ReactElement<Provider> {
-    return (<Provider store={store}>
-      <App/>
-    </Provider>);
+    const route: string = this.getRoute();
+    switch (route) {
+      /*
+      case 'dogfood':
+        return(<Dogfood />);
+      case 'vsts':
+        return(<VSTS />);
+      case 'done':
+        return(<Done />);
+        */
+      default:
+        return(<div>Route: '{route}' is not a valid route!</div>);
+    }
   }
 }
 
